@@ -85,3 +85,20 @@ if abs(silhouette_score_scaled - silhouette_scores[silhouette_scores["簇数"] =
     print('结论：k-means对数据归一敏感')
 else:
     print('结论：k-means对数据归一不敏感')
+
+# 特征分析
+# 计算特征之间的相关性
+correlation_matrix = X.corr()
+# 绘制热力图
+import seaborn as sns
+# 设置图片清晰度
+plt.rcParams['figure.dpi'] = 300
+# 设置中文字体
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 适配中文
+# 确保负号正确显示
+plt.rcParams["axes.unicode_minus"] = False
+# 绘制热力图
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
+plt.title('特征相关性热力图')
+plt.show()
