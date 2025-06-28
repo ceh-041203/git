@@ -89,7 +89,7 @@ else:
 # 特征相关性分析
 # 计算特征之间的相关性
 correlation_matrix = X.corr()
-# 绘制热力图
+# 绘制特征相关性热力图
 import seaborn as sns
 # 设置图片清晰度
 plt.rcParams['figure.dpi'] = 300
