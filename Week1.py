@@ -76,8 +76,6 @@ from sklearn.preprocessing import StandardScaler
 # 对数据进行归一化
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X)
 
 kmeans_scaled = KMeans(n_clusters=best_n_cluster)
 kmeans_scaled.fit(X_scaled)
