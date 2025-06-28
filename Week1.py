@@ -64,3 +64,24 @@ if np.std(inertia_values) > 100:  # 可以根据实际情况调整阈值
     print('结论：k-means对初始值敏感')
 else:
     print('结论：k-means对初始值不敏感')
+
+# k-means是否对数据归一敏感问题探索
+# 对数据进行归一化
+from sklearn.preprocessing import StandardScaler
+# 对数据进行归一化
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+kmeans_scaled = KMeans(n_clusters=best_n_cluster)
+kmeans_scaled.fit(X_scaled)
+labels_scaled = kmeans_scaled.labels_
+silhouette_score_scaled = silhouette_score(X_scaled, labels_scaled)
+
+print(f'归一化前的轮廓系数: {silhouette_scores[silhouette_scores["簇数"] == best_n_cluster]["轮廓系数"].values[0]}')
+print(f'归一化后的轮廓系数: {silhouette_score_scaled}')
+if abs(silhouette_score_scaled - silhouette_scores[silhouette_scores["簇数"] == best_n_cluster]["轮廓系数"].values[0]) > 0.1:  # 可以根据实际情况调整阈值
+    print('结论：k-means对数据归一敏感')
+else:
+    print('结论：k-means对数据归一不敏感')
