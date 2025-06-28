@@ -48,3 +48,19 @@ plt.legend()
 best_index = silhouette_scores[silhouette_scores['簇数'] == best_n_cluster].index[0]
 plt.scatter(silhouette_scores['簇数'][best_index], silhouette_scores['轮廓系数'][best_index], color='r', zorder=5, label=f'最佳簇数({best_n_cluster})')
 plt.show()
+
+# k-means初始值是否敏感问题探索
+import numpy as np
+# 多次运行k-means，使用不同的随机初始值
+n_runs = 10
+inertia_values = []
+for _ in range(n_runs):
+    kmeans = KMeans(n_clusters=best_n_cluster, init='random')
+    kmeans.fit(X)
+    inertia_values.append(kmeans.inertia_)
+
+print(f'不同初始值下的惯性值: {inertia_values}')
+if np.std(inertia_values) > 100:  # 可以根据实际情况调整阈值
+    print('结论：k-means对初始值敏感')
+else:
+    print('结论：k-means对初始值不敏感')
