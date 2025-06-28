@@ -86,7 +86,7 @@ if abs(silhouette_score_scaled - silhouette_scores[silhouette_scores["簇数"] =
 else:
     print('结论：k-means对数据归一不敏感')
 
-# 特征分析
+# 特征相关性分析
 # 计算特征之间的相关性
 correlation_matrix = X.corr()
 # 绘制热力图
